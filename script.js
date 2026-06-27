@@ -1,16 +1,35 @@
-// ============================
-// GLOBAL STATE
-// ============================
+// =======================================
+// DATE WITH MY LOVE ❤️
+// script.js (PART 1)
+// =======================================
 
-const pages = document.querySelectorAll(".page");
-const progressBar = document.getElementById("progressBar");
+// -------------------------------
+// Global Variables
+// -------------------------------
 
-let travelChoice = "";
-let placeChoice = "";
-let foodChoices = [];
+const screens = document.querySelectorAll(".screen");
+
+const progress = document.getElementById("progress");
+
+const ticketContent = document.getElementById("ticketContent");
+
+const statusText = document.getElementById("status");
+
+const noBtn = document.getElementById("noBtn");
+
+const loveSlider = document.getElementById("loveSlider");
+
+const loveValue = document.getElementById("loveValue");
+
+let selectedTravel = "";
+let selectedPlace = "";
+let selectedFoods = [];
+
+let noClicks = 0;
 
 const pageOrder = [
     "landing",
+    "intro",
     "proposal",
     "travel",
     "place",
@@ -19,93 +38,133 @@ const pageOrder = [
     "ticket"
 ];
 
-// ============================
-// PAGE NAVIGATION
-// ============================
+// -------------------------------
+// Progress Bar
+// -------------------------------
 
-function nextPage(id) {
+function updateProgress(id){
 
-    pages.forEach(page => {
-        page.classList.remove("active");
+    const index = pageOrder.indexOf(id);
+
+    const percent =
+    (index/(pageOrder.length-1))*100;
+
+    progress.style.width = percent+"%";
+
+}
+
+// -------------------------------
+// Page Navigation
+// -------------------------------
+
+function goTo(id){
+
+    screens.forEach(screen=>{
+
+        screen.classList.remove("active");
+
     });
 
-    const page = document.getElementById(id);
+    const target =
+    document.getElementById(id);
 
-    page.classList.add("active");
+    target.classList.add("active");
 
     updateProgress(id);
 
-    if (window.gsap) {
+    if(window.gsap){
 
-        gsap.from(page.querySelector(".glass"), {
+        gsap.fromTo(
 
-            opacity:0,
-            y:40,
-            scale:0.9,
-            duration:0.6,
-            ease:"power2.out"
+            target.querySelector(".glass"),
 
-        });
+            {
+
+                opacity:0,
+
+                scale:.9,
+
+                y:40
+
+            },
+
+            {
+
+                opacity:1,
+
+                scale:1,
+
+                y:0,
+
+                duration:.6,
+
+                ease:"power2.out"
+
+            }
+
+        );
 
     }
 
 }
 
-// ============================
-// PROGRESS BAR
-// ============================
+// -------------------------------
+// Floating Hearts
+// -------------------------------
 
-function updateProgress(id){
+const heartContainer =
+document.getElementById("hearts");
 
-    let index = pageOrder.indexOf(id);
+const heartEmoji = [
 
-    let percent = (index/(pageOrder.length-1))*100;
+"❤️",
+"💕",
+"💖",
+"💗",
+"💓"
 
-    progressBar.style.width = percent + "%";
-
-}
-
-// ============================
-// FLOATING HEARTS
-// ============================
-
-const emojis = ["❤️","💕","💖","💗","💓"];
+];
 
 function createHeart(){
 
-    const heart = document.createElement("div");
+    const heart =
+    document.createElement("div");
 
-    heart.className = "heart";
+    heart.className="heart";
 
-    heart.innerHTML = emojis[Math.floor(Math.random()*emojis.length)];
+    heart.innerHTML =
+    heartEmoji[
+        Math.floor(
+            Math.random()*heartEmoji.length
+        )
+    ];
 
-    heart.style.left = Math.random()*100+"vw";
+    heart.style.left =
+    Math.random()*100+"vw";
 
-    heart.style.fontSize = (18+Math.random()*20)+"px";
+    heart.style.fontSize =
+    (18+Math.random()*18)+"px";
 
-    heart.style.animationDuration = (4+Math.random()*4)+"s";
+    heart.style.animationDuration =
+    (5+Math.random()*4)+"s";
 
-    document.body.appendChild(heart);
+    heartContainer.appendChild(heart);
 
     setTimeout(()=>{
 
         heart.remove();
 
-    },8000);
+    },9000);
 
 }
 
-setInterval(createHeart,300);
+setInterval(createHeart,350);
 
-// ============================
-// NO BUTTON
-// ============================
+// -------------------------------
+// Funny NO Button
+// -------------------------------
 
-const noBtn = document.getElementById("noBtn");
-
-const funnyText = document.getElementById("funnyText");
-
-const funnyMessages=[
+const messages=[
 
 "Please 🥺",
 
@@ -113,51 +172,94 @@ const funnyMessages=[
 
 "Food is on me 🍕",
 
-"I'll behave 😌",
+"I'll bring chocolates 🍫",
 
-"You're too cute to say No ❤️",
+"You look prettier when you smile 😊",
 
-"Almost there 😂",
+"Just one date? ❤️",
 
-"Only YES works 😜"
+"Okay... only YES left 😂"
 
 ];
 
-let noCount=0;
+function moveNoButton(){
 
-function moveButton(){
+    noClicks++;
 
-    noCount++;
+    statusText.innerHTML =
+    messages[
+        Math.min(
+            noClicks-1,
+            messages.length-1
+        )
+    ];
 
-    funnyText.innerHTML = funnyMessages[Math.min(noCount-1,funnyMessages.length-1)];
+    const container =
+    document.querySelector(".btn-group");
 
-    const x=(Math.random()*250)-125;
+    const containerWidth =
+    container.clientWidth;
 
-    const y=(Math.random()*120)-60;
+    const containerHeight =
+    container.clientHeight;
 
-    noBtn.style.transform=`translate(${x}px,${y}px)`;
+    const btnWidth =
+    noBtn.offsetWidth;
 
-    if(noCount>=7){
+    const btnHeight =
+    noBtn.offsetHeight;
+
+    const maxX =
+    containerWidth-btnWidth;
+
+    const maxY =
+    containerHeight-btnHeight;
+
+    const x =
+    Math.random()*maxX-maxX/2;
+
+    const y =
+    Math.random()*maxY;
+
+    noBtn.style.transform =
+    `translate(${x}px,${y}px)`;
+
+    if(noClicks>=7){
 
         noBtn.style.display="none";
 
-        funnyText.innerHTML="See... Destiny wanted YES ❤️";
+        statusText.innerHTML =
+        "See... destiny chose YES ❤️";
 
     }
 
 }
 
-noBtn.addEventListener("mouseover",moveButton);
+noBtn.addEventListener(
 
-noBtn.addEventListener("click",moveButton);
+"mouseenter",
 
-// ============================
-// TRAVEL
-// ============================
+moveNoButton
 
-function removeSelection(parent){
+);
 
-    parent.querySelectorAll(".card").forEach(card=>{
+noBtn.addEventListener(
+
+"click",
+
+moveNoButton
+
+);
+
+// -------------------------------
+// Card Selection Helper
+// -------------------------------
+
+function clearCards(parent){
+
+    parent
+    .querySelectorAll(".card")
+    .forEach(card=>{
 
         card.classList.remove("selected");
 
@@ -165,171 +267,45 @@ function removeSelection(parent){
 
 }
 
+// -------------------------------
+// Travel
+// -------------------------------
+
 function selectTravel(value,element){
 
-    removeSelection(document.getElementById("travel"));
+    clearCards(
+
+        document.getElementById("travel")
+
+    );
 
     element.classList.add("selected");
 
-    travelChoice=value;
+    selectedTravel=value;
 
 }
 
-// ============================
-// PLACE
-// ============================
+// -------------------------------
+// Place
+// -------------------------------
 
 function selectPlace(value,element){
 
-    removeSelection(document.getElementById("place"));
+    clearCards(
+
+        document.getElementById("place")
+
+    );
 
     element.classList.add("selected");
 
-    placeChoice=value;
+    selectedPlace=value;
 
 }
 
-// ============================
-// FOOD
-// ============================
-
-function toggleFood(element,item){
-
-    element.classList.toggle("active");
-
-    if(foodChoices.includes(item)){
-
-        foodChoices=foodChoices.filter(x=>x!==item);
-
-    }
-
-    else{
-
-        foodChoices.push(item);
-
-    }
-
-}
-
-// ============================
-// LOVE SLIDER
-// ============================
-
-const slider=document.getElementById("loveSlider");
-
-const loveValue=document.getElementById("loveValue");
-
-slider.addEventListener("input",()=>{
-
-    slider.value=100;
-
-    loveValue.innerHTML="100% ❤️";
-
-});
-
-// ============================
-// TICKET
-// ============================
-
-function showTicket(){
-
-    nextPage("ticket");
-
-    let food="";
-
-    if(foodChoices.length===0){
-
-        food="Anything with You ❤️";
-
-    }
-
-    else{
-
-        food=foodChoices.join(", ");
-
-    }
-
-    document.getElementById("summary").innerHTML=`
-
-    <p>📅 <b>Date :</b> Sunday Evening</p>
-
-    <p>🚇 <b>Travel :</b> ${travelChoice || "Your Choice ❤️"}</p>
-
-    <p>🌸 <b>Place :</b> ${placeChoice || "Anywhere Together ❤️"}</p>
-
-    <p>🍕 <b>Food :</b> ${food}</p>
-
-    <hr style="margin:18px 0;opacity:.4;">
-
-    <p style="font-size:20px;line-height:1.8;">
-
-    Looking forward to spending one beautiful evening with the most beautiful girl ❤️
-
-    </p>
-
-    `;
-
-    confettiBlast();
-
-}
-
-// ============================
-// CONFETTI
-// ============================
-
-function confettiBlast(){
-
-    if(typeof confetti==="undefined") return;
-
-    confetti({
-
-        particleCount:250,
-
-        spread:160,
-
-        startVelocity:40,
-
-        origin:{y:0.65}
-
-    });
-
-}
-
-// ============================
-// RANDOM COMPLIMENTS
-// ============================
-
-const compliments=[
-
-"You're the prettiest ❤️",
-
-"I can't wait to see you 😊",
-
-"You make every place special 🌸",
-
-"One smile from you = Best Day ❤️",
-
-"You look cutest when you smile 😍",
-
-"Still my favourite person ❤️"
-
-];
-
-setInterval(()=>{
-
-    const subtitle=document.querySelector(".page.active .subtitle");
-
-    if(subtitle){
-
-        subtitle.innerHTML=compliments[Math.floor(Math.random()*compliments.length)];
-
-    }
-
-},7000);
-
-// ============================
-// GSAP ENTRY
-// ============================
+// -------------------------------
+// Initial Animation
+// -------------------------------
 
 window.onload=()=>{
 
@@ -337,18 +313,300 @@ window.onload=()=>{
 
     if(window.gsap){
 
-        gsap.from(".glass",{
+        gsap.from(
 
-            y:50,
+            ".glass",
 
-            opacity:0,
+            {
 
-            duration:1,
+                y:40,
 
-            ease:"power3.out"
+                opacity:0,
 
-        });
+                duration:.8,
+
+                ease:"power2.out"
+
+            }
+
+        );
 
     }
 
 };
+// =======================================
+// PART 2
+// =======================================
+
+// -------------------------------
+// Food Selection
+// -------------------------------
+
+function toggleFood(element,item){
+
+    element.classList.toggle("active");
+
+    if(selectedFoods.includes(item)){
+
+        selectedFoods =
+        selectedFoods.filter(f=>f!==item);
+
+    }
+
+    else{
+
+        selectedFoods.push(item);
+
+    }
+
+}
+
+// -------------------------------
+// Love Slider
+// -------------------------------
+
+loveSlider.addEventListener("input",()=>{
+
+    if(loveSlider.value<100){
+
+        loveSlider.value=100;
+
+    }
+
+    loveValue.innerHTML="100% ❤️";
+
+});
+
+// -------------------------------
+// Generate Ticket
+// -------------------------------
+
+function showTicket(){
+
+    goTo("ticket");
+
+    let foods="";
+
+    if(selectedFoods.length===0){
+
+        foods="Anything with You ❤️";
+
+    }
+
+    else{
+
+        foods=selectedFoods.join(", ");
+
+    }
+
+    ticketContent.innerHTML=
+
+    `
+
+    <p>📅 <strong>Date</strong> : Sunday Evening</p>
+
+    <p>🚇 <strong>Travel</strong> : ${selectedTravel||"Your Choice ❤️"}</p>
+
+    <p>🌸 <strong>Place</strong> : ${selectedPlace||"Anywhere Together ❤️"}</p>
+
+    <p>🍕 <strong>Food</strong> : ${foods}</p>
+
+    <hr style="margin:20px 0;opacity:.3;">
+
+    <p>
+
+    Thank you for saying
+
+    <strong>YES ❤️</strong>
+
+    <br><br>
+
+    Now all that's left is
+
+    to make beautiful memories
+
+    together.
+
+    </p>
+
+    `;
+
+    celebrate();
+
+}
+
+// -------------------------------
+// Confetti
+// -------------------------------
+
+function celebrate(){
+
+    if(typeof confetti==="undefined") return;
+
+    confetti({
+
+        particleCount:180,
+
+        spread:100,
+
+        startVelocity:35,
+
+        origin:{y:.65}
+
+    });
+
+    setTimeout(()=>{
+
+        confetti({
+
+            particleCount:120,
+
+            angle:60,
+
+            spread:80,
+
+            origin:{x:0}
+
+        });
+
+        confetti({
+
+            particleCount:120,
+
+            angle:120,
+
+            spread:80,
+
+            origin:{x:1}
+
+        });
+
+    },250);
+
+}
+
+// -------------------------------
+// Random Floating Compliments
+// -------------------------------
+
+const compliments=[
+
+"You're the prettiest ❤️",
+
+"I can't wait to see you 😊",
+
+"You make every place beautiful 🌸",
+
+"My favourite place is beside you ❤️",
+
+"You're my sunshine ☀️",
+
+"You have the cutest smile 😍",
+
+"I already know you'll look amazing ❤️"
+
+];
+
+setInterval(()=>{
+
+    const active=document.querySelector(".screen.active p");
+
+    if(!active) return;
+
+    if(active.classList.contains("typing")) return;
+
+    if(active.id==="status") return;
+
+    if(Math.random()>.55){
+
+        active.innerHTML=
+
+        compliments[
+
+            Math.floor(
+
+                Math.random()*compliments.length
+
+            )
+
+        ];
+
+    }
+
+},9000);
+
+// -------------------------------
+// Keyboard Support
+// -------------------------------
+
+document.addEventListener("keydown",(e)=>{
+
+    if(e.key==="Enter"){
+
+        const active=document.querySelector(".screen.active");
+
+        const btn=active.querySelector(".primary");
+
+        if(btn){
+
+            btn.click();
+
+        }
+
+    }
+
+});
+
+// -------------------------------
+// Touch Support
+// -------------------------------
+
+let touchStartX=0;
+
+document.addEventListener("touchstart",(e)=>{
+
+    touchStartX=e.touches[0].clientX;
+
+});
+
+document.addEventListener("touchend",(e)=>{
+
+    const diff=
+
+    e.changedTouches[0].clientX-touchStartX;
+
+    if(Math.abs(diff)>120){
+
+        // Reserved for future swipe support
+
+    }
+
+});
+
+// -------------------------------
+// Restart Helper
+// -------------------------------
+
+function restart(){
+
+    location.reload();
+
+}
+
+// -------------------------------
+// Make Functions Global
+// -------------------------------
+
+window.goTo=goTo;
+
+window.selectTravel=selectTravel;
+
+window.selectPlace=selectPlace;
+
+window.toggleFood=toggleFood;
+
+window.showTicket=showTicket;
+
+window.celebrate=celebrate;
+
+window.restart=restart;
