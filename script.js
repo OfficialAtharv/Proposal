@@ -187,54 +187,52 @@ function moveNoButton(){
     noClicks++;
 
     statusText.innerHTML =
-    messages[
-        Math.min(
-            noClicks-1,
-            messages.length-1
-        )
-    ];
+        messages[Math.min(noClicks-1, messages.length-1)];
 
     const container =
-    document.querySelector(".btn-group");
+        document.querySelector(".btn-group");
 
-    const containerWidth =
-    container.clientWidth;
+    const containerRect =
+        container.getBoundingClientRect();
 
-    const containerHeight =
-    container.clientHeight;
-
-    const btnWidth =
-    noBtn.offsetWidth;
-
-    const btnHeight =
-    noBtn.offsetHeight;
+    const btnRect =
+        noBtn.getBoundingClientRect();
 
     const maxX =
-    containerWidth-btnWidth;
+        containerRect.width - btnRect.width;
 
     const maxY =
-    containerHeight-btnHeight;
+        containerRect.height - btnRect.height;
+
+    if(maxX <= 0 || maxY <= 0){
+
+        return;
+
+    }
 
     const x =
-    Math.random()*(maxX-20)-((maxX-20)/2);
+        Math.random()*maxX;
 
     const y =
-    Math.random()*maxY;
+        Math.random()*maxY;
 
-    noBtn.style.transform =
-    `translate(${x}px,${y}px)`;
+    noBtn.style.position="absolute";
+
+    noBtn.style.left=x+"px";
+
+    noBtn.style.top=y+"px";
+
+    noBtn.style.transform="none";
 
     if(noClicks>=7){
 
         noBtn.style.display="none";
 
-        statusText.innerHTML =
-        "See... destiny chose YES ❤️";
+        statusText.innerHTML="Okay 😂❤️ Only YES remains.";
 
     }
 
 }
-
 if(window.innerWidth>768){
 
     noBtn.addEventListener(
