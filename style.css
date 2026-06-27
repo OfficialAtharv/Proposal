@@ -433,21 +433,15 @@ border:1px solid rgba(255,255,255,.25);
 
 .btn-group{
 
+position:relative;
+
+height:180px;
+
 display:flex;
 
 justify-content:center;
 
 align-items:center;
-
-gap:18px;
-
-margin-top:30px;
-
-position:relative;
-
-min-height:90px;
-
-flex-wrap:wrap;
 
 }
 
@@ -915,17 +909,23 @@ font-size:13px;
 
 .primary,
 .secondary,
-.yes,
-.no{
+.yes{
 
 width:100%;
 
 }
 
+.no{
+
+width:auto;
+
+min-width:120px;
+
+}
+
 .btn-group{
 
-min-height:150px;
-
+height:220px;
 }
 
 #loveValue{
