@@ -21,7 +21,7 @@ body{
     min-height:100dvh;
 
     overflow-x:hidden;
-
+overflow-y:auto;
     display:flex;
     justify-content:center;
     align-items:center;
@@ -205,7 +205,7 @@ transform:scale(1);
 
 width:min(430px,92vw);
 
-max-height:90vh;
+max-height:min(90vh,800px);
 
 overflow-y:auto;
 
@@ -563,6 +563,12 @@ font-size:18px;
 font-weight:600;
 
 }
+.card:active,
+.food-card:active{
+
+transform:scale(.96);
+
+}
 
 /* ===================================
         FOOD GRID
@@ -844,7 +850,7 @@ padding:16px;
 width:94vw;
 
 max-height:92vh;
-
+scroll-behavior:smooth;
 padding:22px;
 
 }
