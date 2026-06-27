@@ -235,20 +235,23 @@ function moveNoButton(){
 
 }
 
+if(window.innerWidth>768){
+
+    noBtn.addEventListener(
+        "mouseenter",
+        moveNoButton
+    );
+
+}
+
 noBtn.addEventListener(
-
-"mouseenter",
-
-moveNoButton
-
+    "click",
+    moveNoButton
 );
 
 noBtn.addEventListener(
-
-"click",
-
-moveNoButton
-
+    "touchstart",
+    moveNoButton
 );
 
 // -------------------------------
