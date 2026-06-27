@@ -480,6 +480,14 @@ position:relative;
 transition:transform .25s ease;
 
 }
+.primary:active,
+.secondary:active,
+.yes:active,
+.no:active{
+
+transform:scale(.97);
+
+}
 /* ===================================
         CARD GRID
 =================================== */
