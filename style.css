@@ -1,614 +1,204 @@
-/* ==========================
-      Google Font
-=========================== */
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
-}
-
-html,body{
+html{
     width:100%;
     height:100%;
-    overflow:hidden;
 }
-
-/* ==========================
-      Animated Background
-=========================== */
 
 body{
 
-background:
-linear-gradient(
--45deg,
-#ff9a9e,
-#fad0c4,
-#ffd1ff,
-#fbc2eb,
-#ffc3a0);
+    position:relative;
 
-background-size:400% 400%;
+    min-height:100vh;
+    min-height:100dvh;
 
-animation:bgMove 15s ease infinite;
+    overflow-x:hidden;
+    overflow-y:auto;
 
-display:flex;
-justify-content:center;
-align-items:center;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 
-color:white;
+    color:#fff;
 
-}
+    background:linear-gradient(
+        -45deg,
+        #ff9a9e,
+        #fad0c4,
+        #ffd1ff,
+        #fbc2eb,
+        #ffc3a0
+    );
 
-@keyframes bgMove{
-
-0%{
-background-position:0% 50%;
-}
-
-50%{
-background-position:100% 50%;
-}
-
-100%{
-background-position:0% 50%;
-}
+    background-size:400% 400%;
+    animation:bgMove 15s ease infinite;
 
 }
-
-/* ==========================
-Progress
-=========================== */
-
 .progress{
 
-position:fixed;
+    position:fixed;
 
-top:0;
+    top:0;
+    left:0;
 
-left:0;
+    width:100%;
 
-height:6px;
+    height:6px;
 
-width:100%;
+    background:rgba(255,255,255,.18);
 
-background:rgba(255,255,255,.15);
-
-z-index:100;
+    z-index:9999;
 
 }
 
 #progressBar{
 
-height:100%;
+    width:0;
 
-width:0%;
+    height:100%;
 
-background:white;
+    background:#fff;
 
-transition:.6s;
+    transition:.5s;
 
 }
-
-/* ==========================
-Pages
-=========================== */
-
 .page{
 
-position:absolute;
+    position:fixed;
 
-width:100%;
+    top:0;
+    left:0;
 
-height:100%;
+    width:100%;
+    height:100%;
 
-display:flex;
+    display:flex;
 
-justify-content:center;
+    justify-content:center;
 
-align-items:center;
+    align-items:center;
 
-padding:20px;
+    padding:20px;
 
-opacity:0;
+    opacity:0;
 
-pointer-events:none;
+    pointer-events:none;
 
-transform:scale(.92);
+    transform:scale(.95);
 
-transition:.7s;
+    transition:.5s ease;
 
 }
 
 .page.active{
 
-opacity:1;
+    opacity:1;
 
-pointer-events:auto;
+    pointer-events:auto;
 
-transform:scale(1);
+    transform:scale(1);
 
 }
+.glass{
 
-/* ==========================
-Glass Card
-=========================== */
+    width:min(430px,92vw);
+
+    max-height:90vh;
+
+    overflow-y:auto;
+    overflow-x:hidden;
+
+    -webkit-overflow-scrolling:touch;
+
+    padding:30px;
+
+    border-radius:30px;
+
+    background:rgba(255,255,255,.18);
+
+    backdrop-filter:blur(18px);
+
+    -webkit-backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.25);
+
+    box-shadow:0 15px 35px rgba(0,0,0,.18);
+
+    text-align:center;
+
+    animation:pop .7s;
+
+}
+.buttons{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    gap:20px;
+
+    margin-top:35px;
+
+    position:relative;
+
+    min-height:90px;
+
+    overflow:visible;
+    touch-action:manipulation;
+
+}
+.noBtn{
+
+    padding:15px 35px;
+
+    border-radius:50px;
+
+    background:white;
+
+    color:#444;
+
+    font-size:18px;
+
+    position:relative;
+
+    transition:transform .25s ease;
+
+}
+@media(max-width:700px){
+
+.page{
+
+padding:15px;
+
+}
 
 .glass{
 
-width:100%;
+width:95%;
 
-max-width:420px;
+max-height:92vh;
 
-padding:35px;
-
-border-radius:30px;
-
-background:rgba(255,255,255,.18);
-
-backdrop-filter:blur(18px);
-
-border:1px solid rgba(255,255,255,.25);
-
-box-shadow:
-
-0 15px 35px rgba(0,0,0,.18);
-
-text-align:center;
-
-animation:pop .8s;
-
-}
-
-@keyframes pop{
-
-from{
-
-transform:scale(.8);
-
-opacity:0;
-
-}
-
-to{
-
-transform:scale(1);
-
-opacity:1;
-
-}
-
-}
-
-.emoji{
-
-font-size:65px;
-
-animation:heartBeat 1.2s infinite;
-
-}
-
-@keyframes heartBeat{
-
-0%{
-
-transform:scale(1);
-
-}
-
-50%{
-
-transform:scale(1.15);
-
-}
-
-100%{
-
-transform:scale(1);
-
-}
+padding:22px;
 
 }
 
 h1{
 
-font-size:38px;
-
-font-weight:700;
-
-margin-top:20px;
+font-size:30px;
 
 }
 
 h2{
 
-font-size:32px;
-
-margin-bottom:25px;
+font-size:24px;
 
 }
 
 .subtitle{
 
-margin-top:18px;
-
-line-height:1.7;
-
-font-size:18px;
-
-opacity:.95;
-
-}
-
-/* ==========================
-Buttons
-=========================== */
-
-button{
-
-cursor:pointer;
-
-border:none;
-
-outline:none;
-
-transition:.3s;
-
-}
-
-.mainBtn{
-
-margin-top:40px;
-
-padding:16px 45px;
-
-font-size:18px;
-
-font-weight:600;
-
-border-radius:60px;
-
-background:white;
-
-color:#ff3f82;
-
-}
-
-.mainBtn:hover{
-
-transform:translateY(-5px);
-
-box-shadow:
-
-0 10px 25px rgba(255,255,255,.4);
-
-}
-
-.buttons{
-
-display:flex;
-
-justify-content:center;
-
-gap:20px;
-
-margin-top:40px;
-
-position:relative;
-
-}
-
-.yesBtn{
-
-padding:15px 35px;
-
-border-radius:50px;
-
-background:#ff3f82;
-
-color:white;
-
-font-size:18px;
-
-}
-
-.noBtn{
-
-padding:15px 35px;
-
-border-radius:50px;
-
-background:white;
-
-color:#444;
-
-font-size:18px;
-
-position:relative;
-
-}
-
-.nextBtn{
-
-margin-top:35px;
-
-padding:14px 40px;
-
-border-radius:50px;
-
-background:white;
-
-color:#ff3f82;
-
-font-weight:600;
-
-font-size:17px;
-
-}
-
-/* ==========================
-Cards
-=========================== */
-
-.cards{
-
-display:grid;
-
-grid-template-columns:repeat(2,1fr);
-
-gap:18px;
-
-margin-top:20px;
-
-}
-
-.card{
-
-background:rgba(255,255,255,.16);
-
-border-radius:22px;
-
-padding:28px;
-
-cursor:pointer;
-
-transition:.35s;
-
-border:2px solid transparent;
-
-}
-
-.card:hover{
-
-transform:translateY(-8px);
-
-}
-
-.card i{
-
-font-size:40px;
-
-margin-bottom:15px;
-
-}
-
-.card span{
-
-display:block;
-
-font-size:18px;
-
-}
-
-.selected{
-
-background:white!important;
-
-color:#ff3f82;
-
-border-color:white;
-
-transform:scale(1.05);
-
-}
-
-/* ==========================
-Food
-=========================== */
-
-.foodGrid{
-
-display:grid;
-
-grid-template-columns:repeat(2,1fr);
-
-gap:15px;
-
-margin-top:20px;
-
-}
-
-.food{
-
-padding:20px;
-
-border-radius:20px;
-
-background:rgba(255,255,255,.18);
-
-cursor:pointer;
-
-transition:.3s;
-
-font-size:40px;
-
-}
-
-.food p{
-
-margin-top:10px;
-
-font-size:15px;
-
-}
-
-.food:hover{
-
-transform:translateY(-6px);
-
-}
-
-.food.active{
-
-background:white;
-
-color:#ff3f82;
-
-}
-
-/* ==========================
-Slider
-=========================== */
-
-.sliderBox{
-
-margin-top:40px;
-
-}
-
-#loveSlider{
-
-width:100%;
-
-}
-
-#loveValue{
-
-margin-top:25px;
-
-font-size:45px;
-
-}
-
-/* ==========================
-Ticket
-=========================== */
-
-.ticket h1{
-
-font-size:34px;
-
-margin-bottom:25px;
-
-}
-
-#summary{
-
-text-align:left;
-
-margin-top:25px;
-
-font-size:18px;
-
-line-height:2;
-
-}
-
-.ticket h3{
-
-margin-top:35px;
-
-}
-
-/* ==========================
-Floating Hearts
-=========================== */
-
-.heart{
-
-position:fixed;
-
-bottom:-40px;
-
-font-size:22px;
-
-animation:floatUp linear forwards;
-
-opacity:.8;
-
-pointer-events:none;
-
-}
-
-@keyframes floatUp{
-
-0%{
-
-transform:translateY(0) rotate(0);
-
-opacity:0;
-
-}
-
-20%{
-
-opacity:1;
-
-}
-
-100%{
-
-transform:
-
-translateY(-120vh)
-
-rotate(360deg);
-
-opacity:0;
-
-}
-
-}
-
-/* ==========================
-Funny Text
-=========================== */
-
-#funnyText{
-
-margin-top:25px;
-
-font-size:18px;
-
-font-weight:500;
-
-}
-
-/* ==========================
-Responsive
-=========================== */
-
-@media(max-width:700px){
-
-.glass{
-
-max-width:100%;
-
-padding:28px;
-
-}
-
-h1{
-
-font-size:32px;
-
-}
-
-h2{
-
-font-size:28px;
+font-size:16px;
 
 }
 
@@ -616,33 +206,58 @@ font-size:28px;
 
 grid-template-columns:1fr;
 
+gap:15px;
+
 }
 
 .foodGrid{
 
 grid-template-columns:repeat(2,1fr);
 
+gap:12px;
+
 }
 
+.food{
+
+padding:16px;
+
+font-size:34px;
+
+}
+
+.food p{
+
+font-size:13px;
+
+}
+
+.mainBtn,
+.nextBtn,
+.yesBtn,
+.noBtn{
+
+width:100%;
+
+}
+
+.buttons{
+
+min-height:150px;
+
+}
+
+}
+img{
+    max-width:100%;
+    display:block;
+}
+.card,
+.food,
 button{
 
-font-size:16px;
+    user-select:none;
 
-}
+    -webkit-user-select:none;
 
-.subtitle{
-
-font-size:16px;
-
-}
-
-}
-.buttons{
-    position:relative;
-    height:80px;
-    overflow:visible;
-}
-
-.noBtn{
-    transition:transform .3s ease;
 }
