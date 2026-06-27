@@ -216,7 +216,7 @@ function moveNoButton(){
     containerHeight-btnHeight;
 
     const x =
-    Math.random()*maxX-maxX/2;
+    Math.random()*(maxX-20)-((maxX-20)/2);
 
     const y =
     Math.random()*maxY;
