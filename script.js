@@ -365,17 +365,17 @@ function toggleFood(element,item){
 // Love Slider
 // -------------------------------
 
-loveSlider.addEventListener("input",()=>{
+if(loveSlider){
 
-    if(loveSlider.value<100){
+    loveSlider.addEventListener("input",()=>{
 
         loveSlider.value=100;
 
-    }
+        loveValue.innerHTML="100% ❤️";
 
-    loveValue.innerHTML="100% ❤️";
+    });
 
-});
+}
 
 // -------------------------------
 // Generate Ticket
