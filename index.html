@@ -1,16 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
     <title>For Someone Very Special ❤️</title>
 
     <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 
     <!-- Font Awesome -->
     <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
     <!-- GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -19,36 +25,46 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 
     <link rel="stylesheet" href="style.css">
+
 </head>
+
 <body>
 
-<!-- Floating Hearts -->
-<div id="heart-container"></div>
+<div class="bg-blur"></div>
+<div id="hearts"></div>
 
-<!-- Progress -->
-<div class="progress">
-    <div id="progressBar"></div>
+<div class="progress-wrapper">
+    <div id="progress"></div>
 </div>
 
-<!-- ================= Landing ================= -->
+<!-- ============================= -->
+<!-- Landing -->
+<!-- ============================= -->
 
-<section class="page active" id="landing">
+<section class="screen active" id="landing">
 
     <div class="glass">
 
-        <div class="emoji">❤️</div>
+        <div class="big-heart">
+            ❤️
+        </div>
 
         <h1>Hello Beautiful</h1>
 
-        <p class="subtitle">
+        <p>
 
-            Someone very special wants to ask you something...
+            Someone special has prepared
+
+            <br>
+
+            a tiny surprise just for you...
 
         </p>
 
-        <button class="mainBtn" onclick="nextPage('proposal')">
+        <button class="primary"
+            onclick="goTo('intro')">
 
-            Open It ❤️
+            Open ❤️
 
         </button>
 
@@ -56,11 +72,67 @@
 
 </section>
 
-<!-- ================= Proposal ================= -->
+<!-- ============================= -->
+<!-- Intro -->
+<!-- ============================= -->
 
-<section class="page" id="proposal">
+<section class="screen" id="intro">
 
     <div class="glass">
+
+        <div class="mail">
+
+            💌
+
+        </div>
+
+        <h2>
+
+            A Small Invitation
+
+        </h2>
+
+        <p class="typing">
+
+            Before anything...
+
+            <br><br>
+
+            I have only one request.
+
+            <br>
+
+            Give me one beautiful Sunday evening.
+
+        </p>
+
+        <button class="primary"
+
+            onclick="goTo('proposal')">
+
+            Continue ❤️
+
+        </button>
+
+    </div>
+
+</section>
+
+<!-- ============================= -->
+<!-- Proposal -->
+<!-- ============================= -->
+
+<section class="screen"
+
+    id="proposal">
+
+    <div class="glass">
+
+        <div class="big-heart">
+
+            ❤️
+
+        </div>
 
         <h2>
 
@@ -68,19 +140,23 @@
 
         </h2>
 
-        <div class="buttons">
+        <div class="btn-group">
 
             <button
-                class="yesBtn"
-                onclick="nextPage('travel')">
+
+                class="yes"
+
+                onclick="goTo('travel')">
 
                 YES ❤️
 
             </button>
 
             <button
+
                 id="noBtn"
-                class="noBtn">
+
+                class="no">
 
                 NO 🙈
 
@@ -88,9 +164,9 @@
 
         </div>
 
-        <p id="funnyText">
+        <p id="status">
 
-            Think carefully 😌
+            Choose wisely 😌
 
         </p>
 
@@ -98,187 +174,59 @@
 
 </section>
 
-<!-- ================= Travel ================= -->
+<!-- ============================= -->
+<!-- Travel -->
+<!-- ============================= -->
 
-<section class="page" id="travel">
+<section
 
-    <div class="glass">
+class="screen"
 
-        <h2>
-
-            How Shall We Go?
-
-        </h2>
-
-        <div class="cards">
-
-            <div
-            class="card"
-            onclick="selectTravel('Metro',this)">
-
-                <i class="fa-solid fa-train-subway"></i>
-
-                <span>Metro</span>
-
-            </div>
-
-            <div
-            class="card"
-            onclick="selectTravel('Bike',this)">
-
-                <i class="fa-solid fa-motorcycle"></i>
-
-                <span>Bike</span>
-
-            </div>
-
-        </div>
-
-        <button
-        class="nextBtn"
-        onclick="nextPage('place')">
-
-            Continue →
-
-        </button>
-
-    </div>
-
-</section>
-
-<!-- ================= Place ================= -->
-
-<section class="page" id="place">
-
-    <div class="glass">
-
-        <h2>
-
-            First Stop?
-
-        </h2>
-
-        <div class="cards">
-
-            <div
-            class="card"
-            onclick="selectPlace('Temple',this)">
-
-                <i class="fa-solid fa-place-of-worship"></i>
-
-                <span>Temple</span>
-
-            </div>
-
-            <div
-            class="card"
-            onclick="selectPlace('Garden',this)">
-
-                <i class="fa-solid fa-tree"></i>
-
-                <span>Garden</span>
-
-            </div>
-
-        </div>
-
-        <button
-        class="nextBtn"
-        onclick="nextPage('food')">
-
-            Continue →
-
-        </button>
-
-    </div>
-
-</section>
-
-<!-- ================= Food ================= -->
-
-<section class="page" id="food">
+id="travel">
 
 <div class="glass">
 
 <h2>
 
-Choose Anything ❤️
+How Should We Go?
 
 </h2>
 
-<div class="foodGrid">
+<div class="card-grid">
 
-<div class="food" onclick="toggleFood(this,'Pizza')">
+<div
 
-🍕
+class="card"
 
-<p>Pizza</p>
+onclick="selectTravel('Metro',this)">
 
-</div>
+<i class="fa-solid fa-train-subway"></i>
 
-<div class="food" onclick="toggleFood(this,'Burger')">
-
-🍔
-
-<p>Burger</p>
+<h3>Metro</h3>
 
 </div>
 
-<div class="food" onclick="toggleFood(this,'Veg Biryani')">
+<div
 
-🥘
+class="card"
 
-<p>Veg Biryani</p>
+onclick="selectTravel('Bike',this)">
 
-</div>
+<i class="fa-solid fa-motorcycle"></i>
 
-<div class="food" onclick="toggleFood(this,'Chinese')">
-
-🥡
-
-<p>Chinese</p>
-
-</div>
-
-<div class="food" onclick="toggleFood(this,'South Indian')">
-
-🥞
-
-<p>South Indian</p>
-
-</div>
-
-<div class="food" onclick="toggleFood(this,'Poli Bhaji')">
-
-🍛
-
-<p>Poli Bhaji</p>
-
-</div>
-
-<div class="food" onclick="toggleFood(this,'Street Food')">
-
-🌮
-
-<p>Street Food</p>
-
-</div>
-
-<div class="food" onclick="toggleFood(this,'Cafe')">
-
-☕
-
-<p>Cafe</p>
+<h3>Bike</h3>
 
 </div>
 
 </div>
 
 <button
-class="nextBtn"
-onclick="nextPage('love')">
 
-Continue →
+class="primary"
+
+onclick="goTo('place')">
+
+Next →
 
 </button>
 
@@ -286,76 +234,240 @@ Continue →
 
 </section>
 
-<!-- ================= Love Meter ================= -->
+<!-- ============================= -->
+<!-- Place -->
+<!-- ============================= -->
 
-<section class="page" id="love">
+<section
+
+class="screen"
+
+id="place">
 
 <div class="glass">
 
 <h2>
 
-How Much Do You Love Me?
+Where Should We Start?
 
 </h2>
 
-<div class="sliderBox">
+<div class="card-grid">
 
-<input
-type="range"
-id="loveSlider"
-min="0"
-max="100"
-value="0">
+<div
 
-<h3 id="loveValue">
+class="card"
 
-0%
+onclick="selectPlace('Temple',this)">
 
-</h3>
+<i class="fa-solid fa-place-of-worship"></i>
+
+<h3>Temple</h3>
+
+</div>
+
+<div
+
+class="card"
+
+onclick="selectPlace('Garden',this)">
+
+<i class="fa-solid fa-tree"></i>
+
+<h3>Garden</h3>
+
+</div>
 
 </div>
 
 <button
-class="nextBtn"
-onclick="showTicket()">
 
-Finish ❤️
+class="primary"
+
+onclick="goTo('food')">
+
+Next →
 
 </button>
 
 </div>
 
 </section>
+<!-- ============================= -->
+<!-- Food -->
+<!-- ============================= -->
 
-<!-- ================= Final Ticket ================= -->
+<section class="screen" id="food">
 
-<section class="page" id="ticket">
+    <div class="glass">
+
+        <h2>
+            Choose Everything You Like ❤️
+        </h2>
+
+        <p class="small">
+            Multiple selections are allowed 😋
+        </p>
+
+        <div class="food-grid">
+
+            <div class="food-card" onclick="toggleFood(this,'Pizza')">
+                🍕
+                <span>Pizza</span>
+            </div>
+
+            <div class="food-card" onclick="toggleFood(this,'Burger')">
+                🍔
+                <span>Burger</span>
+            </div>
+
+            <div class="food-card" onclick="toggleFood(this,'Veg Biryani')">
+                🥘
+                <span>Veg Biryani</span>
+            </div>
+
+            <div class="food-card" onclick="toggleFood(this,'Chinese')">
+                🥡
+                <span>Chinese</span>
+            </div>
+
+            <div class="food-card" onclick="toggleFood(this,'South Indian')">
+                🥞
+                <span>South Indian</span>
+            </div>
+
+            <div class="food-card" onclick="toggleFood(this,'Poli Bhaji')">
+                🍛
+                <span>Poli Bhaji</span>
+            </div>
+
+            <div class="food-card" onclick="toggleFood(this,'Street Food')">
+                🌮
+                <span>Street Food</span>
+            </div>
+
+            <div class="food-card" onclick="toggleFood(this,'Cafe')">
+                ☕
+                <span>Cafe</span>
+            </div>
+
+        </div>
+
+        <button class="primary"
+            onclick="goTo('love')">
+
+            Continue ❤️
+
+        </button>
+
+    </div>
+
+</section>
+
+<!-- ============================= -->
+<!-- Love Meter -->
+<!-- ============================= -->
+
+<section class="screen" id="love">
+
+    <div class="glass">
+
+        <h2>
+
+            One Last Question ❤️
+
+        </h2>
+
+        <p>
+
+            How much do you love me?
+
+        </p>
+
+        <input
+            id="loveSlider"
+            type="range"
+            min="0"
+            max="100"
+            value="0">
+
+        <h1 id="loveValue">
+
+            0%
+
+        </h1>
+
+        <button
+
+            class="primary"
+
+            onclick="showTicket()">
+
+            Reveal Our Date ❤️
+
+        </button>
+
+    </div>
+
+</section>
+
+<!-- ============================= -->
+<!-- Final Ticket -->
+<!-- ============================= -->
+
+<section
+
+class="screen"
+
+id="ticket">
 
 <div class="glass ticket">
 
-<h1>
+<div class="ticket-top">
 
-❤️ DATE CONFIRMED ❤️
-
-</h1>
-
-<div id="summary">
+❤️
 
 </div>
 
+<h1>
+
+DATE CONFIRMED
+
+</h1>
+
+<p class="ticket-sub">
+
+Sunday Evening
+
+</p>
+
+<div id="ticketContent">
+
+</div>
+
+<div class="ticket-bottom">
+
 <button
-class="mainBtn"
-onclick="confettiBlast()">
+
+class="primary"
+
+onclick="celebrate()">
 
 Celebrate 🎉
 
 </button>
 
-<h3>
+<button
 
-See You On Sunday ❤️
+class="secondary"
 
-</h3>
+onclick="location.reload()">
+
+Play Again ❤️
+
+</button>
+
+</div>
 
 </div>
 
@@ -364,4 +476,5 @@ See You On Sunday ❤️
 <script src="script.js"></script>
 
 </body>
+
 </html>
